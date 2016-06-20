@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "search";
+}
+
+<h2>搜尋結果</h2>
+
+
+
+<html>
+
+<head>
+
+
+</head>
+<body>
+  
+    <table style="width:100%" border="1" border-collapse="collapse">
+        <tr>
+            <td>員工編號</td>
+            <td>員工姓名</td>
+            <td>職位名稱</td>
+            <td>聘請日期</td>
+            <td></td>
+            <td></td>
+        </tr>
+        @foreach (var item in (List<Final.Models.Employees>)ViewBag.ID)
+        {
+            <tr>
+                <td align="center">@item.EmployeeID</td>
+                <td align="center">@item.FirstName</td>
+                <td align="center">@item.Title</td>
+             
+                <td align="center">@item.HireDate</td>
+
+                <!--下面update?後面是接Controller update的funcion參數-->
+                <td align="center"><a href="update?EmpID=@item.EmployeeID"><input type="button" value="修改" class="btn"/></a></td>
+                <td align="center"> <input type="button" value="刪除"  onclick="DelEmp(@item.EmployeeID)" class="btn"></td>
+
+            </tr>
+        }
+
+       
+
+
+    </table>
+
+
+</body>
+
+
+
+</html>
+
+<script type="text/javascript">
+
+    $(document).ready(function()
+    {
+        $(".text").kendoMaskedTextBox();
+        $(".select").kendoComboBox(
+        {
+            filter: "contains",
+            suggest:true,
+        })
+        $(".date").kendoDatePicker({
+
+            format: "yyyy/mm/dd", animation: {
+                close: {
+                    effects: "fadeOut zoom:out",
+                    duration: 300
+                },
+                open: {
+                    effects: "fadeIn zoom:in",
+                    duration: 300
+                }
+            }
+        });
+
+        $(".btm").kendoButton();
+
+    })
+    function goback()
+    {
+        history.back();
+    }
+
+    function DelEmp(EmpID) {
+    $.ajax({
+        type: "GET",
+        url: "/Final/Delete",
+        data: {
+            EmpID: EmpID
+        },
+        contentType: "application/json charset=utf-8",
+        dataType: "json",
+
+    });
+
+    alert("刪除成功");
+    document.location.reload();
+
+        
+    }
+</script>
+
+

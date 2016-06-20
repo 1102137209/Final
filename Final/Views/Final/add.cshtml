@@ -1,0 +1,146 @@
+﻿
+@{
+    ViewBag.Title = "add";
+}
+
+<h2>新增員工資料</h2>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<html>
+
+<head>
+
+
+</head>
+<body>
+
+    @using(Html.BeginForm("add","Final",FormMethod.Post))
+    { 
+    <table style="width:100%" border="1" border-collapse="collapse">
+        <tr>
+            <td>員工編號</td>
+            <td colspan="3"><input type="text" name="EmpID" value="@ViewBag.EmpID" class="text" readonly="readonly"/></td>
+        </tr>
+        
+        <tr>
+            <td>職位名稱</td>
+            <td colspan="3">
+                <select name="Option" class="select">
+                    <option>請選擇職位名稱</option>
+                    @foreach (var item in(List<Final.Models.Employees>) ViewBag.Position)
+                    {
+                        <option value="@item.Title">@item.Title</option>
+                    }
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>員工姓</td>
+            <td colspan="3">
+                <select name="EmpName" class="select">
+                    <option>請選擇員工姓名</option>
+                    @foreach (var item in (List<Final.Models.Employees>)ViewBag.EmpName)
+                    {
+                        <option value="@item.FirstName">@item.FirstName</option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>員工名</td>
+            <td colspan="3">
+                <select name="EmpLastName" class="select">
+                    <option>請選擇員工姓名</option>
+                    @foreach (var item in (List<Final.Models.Employees>)ViewBag.EmpLastName)
+                    {
+                        <option value="@item.LastName">@item.LastName</option>
+                    }
+                </select>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td>員工生日日期</td>
+            <td><input type="date" name="EmpDate" class="date"/></td>
+            <td>聘請日期</td>
+            <td><input type="date" name="AppliDate" class="date" /></td>
+        </tr>
+        <tr>
+            <td>電話</td>
+            <td colspan="3"><input type="text" name="Phone" class="text"/></td>
+        </tr>
+        <tr>
+            <td>地址</td><td ><input type="text" name="Address" class="text"/></td>
+            <td>國家名稱</td>
+            <td><input type="text" name="TitleCountry" class="text"/></td>
+        </tr>
+
+        <tr>
+            <td>城市</td>
+            <td><input type="text" name="City" class="text"/></td>
+            <td>區域</td>
+            <td><input type="text" name="Region" class="text"/></td>
+        </tr>
+
+        <tr>
+            <td>郵遞區號</td>
+            <td><input type="text" name="Post" class="text"/></td>
+            <td>國家</td>
+            <td><input type="text" name="Country" class="text"/></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td colspan="3"><input type="submit" value="存檔" class="btn" /><input type="button" value="回前一頁" onclick="goback()" class="btn"/></td>
+        </tr>
+
+
+    </table>
+
+    }
+</body>
+
+
+
+</html>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function()
+    {
+        $(".text").kendoMaskedTextBox();
+        $(".select").kendoComboBox(
+        {
+            filter: "contains",
+            suggest:true,
+        })
+        $(".date").kendoDatePicker({
+
+            format: "yyyy/mm/dd", animation: {
+                close: {
+                    effects: "fadeOut zoom:out",
+                    duration: 300
+                },
+                open: {
+                    effects: "fadeIn zoom:in",
+                    duration: 300
+                }
+            }
+        });
+
+        $(".btm").kendoButton();
+
+    })
+    function goback()
+    {
+        history.back();
+    }
+
+
+</script>

@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewBag.Title = "add";
+}
+
+<h2>修改員工資料</h2>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<html>
+
+<head>
+
+
+</head>
+<body>
+
+    @using (Html.BeginForm("update", "Final", FormMethod.Post))
+    {
+        <table style="width:100%" border="1" border-collapse="collapse">
+            <tr>
+                <td>員工編號</td>
+                <td colspan="3"><input type="text" name="EmpID" value="@ViewBag.EmpID.EmployeeID" class="text" readonly="readonly" /></td>
+            </tr>
+
+            <tr>
+                <td>職位名稱</td>
+                <td colspan="3">
+                    <select name="Option" class="select">
+                        <option>@ViewBag.EmpID.Title</option>
+                        @foreach (var item in (List<Final.Models.Employees>)ViewBag.Position)
+                        {
+                            <option value="@item.Title">@item.Title</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>員工姓</td>
+                <td colspan="3" class="select">
+                    <select name="EmpName">
+                        <option>@ViewBag.EmpID.FirstName</option>
+                        @foreach (var item in (List<Final.Models.Employees>)ViewBag.EmpName)
+                        {
+                            <option value="@item.FirstName">@item.FirstName</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>員工名</td>
+                <td colspan="3" class="select">
+                    <select name="EmpLastName">
+                        <option>@ViewBag.EmpID.LastName</option>
+                        @foreach (var item in (List<Final.Models.Employees>)ViewBag.EmpLastName)
+                        {
+                            <option value="@item.LastName">@item.LastName</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>員工生日日期</td>
+                <td><input type="date" name="EmpDate" value="@ViewBag.BirthDate" class="date"/></td>
+                <td>聘請日期</td>
+                <td><input type="date" name="AppliDate" value="@ViewBag.AppliDate" class="date"/></td>
+            </tr>
+            <tr>
+                <td>電話</td>
+                <td colspan="3"><input type="text" name="Phone" value="@ViewBag.EmpID.Phone" class="text"/></td>
+            </tr>
+            <tr>
+                <td>地址</td>
+                <td><input type="text" name="Address" value="@ViewBag.EmpID.Address" class="text"/></td>
+                <td>國家名稱</td>
+                <td><input type="text" name="TitleCountry"  value="@ViewBag.EmpID.TitleOfCourtesy" class="text"/></td>
+            </tr>
+
+            <tr>
+                <td>城市</td>
+                <td><input type="text" name="City" value="@ViewBag.EmpID.City" class="text"/></td>
+                <td>區域</td>
+                <td><input type="text" name="Region" value="@ViewBag.EmpID.Region" class="text"/></td>
+            </tr>
+
+            <tr>
+                <td>郵遞區號</td>
+                <td><input type="text" name="Post" value="@ViewBag.EmpID.PostalCode" class="text"/></td>
+                <td>國家</td>
+                <td><input type="text" name="Country" value="@ViewBag.EmpID.Country" class="text"/></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td colspan="3"><input type="submit" value="存檔" class="btn"/><input type="button" value="回前一頁" onclick="goback()"  class="btn"/></td>
+            </tr>
+
+
+        </table>
+
+    }
+</body>
+
+
+
+</html>
+<script type="text/javascript">
+
+    $(document).ready(function()
+    {
+        $(".text").kendoMaskedTextBox();
+        $(".select").kendoComboBox(
+        {
+            filter: "contains",
+            suggest:true,
+        })
+        $(".date").kendoDatePicker({
+
+            format: "yyyy/mm/dd", animation: {
+                close: {
+                    effects: "fadeOut zoom:out",
+                    duration: 300
+                },
+                open: {
+                    effects: "fadeIn zoom:in",
+                    duration: 300
+                }
+            }
+        });
+
+        $(".btm").kendoButton();
+
+    })
+    function goback()
+    {
+        history.back();
+    }
+
+
+</script>

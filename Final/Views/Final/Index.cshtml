@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<html>
+
+<head>
+
+
+</head>
+<body>
+<h2>員工資料查詢</h2>
+    @using (Html.BeginForm("Index", "Final", FormMethod.Post))
+    { 
+<table style="width:100%" border="1"  border-collapse="collapse">
+    <tr>
+        <td>員工編號</td>
+        <td colspan="3"><input type="text" name="EmpID" class="text" /></td>
+    </tr>
+    <tr>
+        <td>員工姓名</td><td colspan="3"><input type="text" name="EmpName" class="text" /></td>
+    </tr>
+    <tr>
+        <td>職位名稱</td>
+        <td colspan="3">
+            <select name="Position" class="select">
+                <option></option>
+                @foreach(var item in ViewBag.position)
+                {
+                    <option>@item</option>
+                }
+            </select>
+        </td>
+    </tr>
+
+    <tr>
+        <td>員工生日日期</td><td><input type="date" name="EmpDate" class="date"/></td>
+        <td>聘請日期</td><td><input type="date" name="AppliDate" class="date"/></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td colspan="3"><input type="submit" value="查詢" class="btn"/><input type="reset" value="清除" class="btn"/> <a href="/Final/add"><input type="button" value="新增訂單" class="btn"/></a></td>
+    </tr>
+
+
+</table>
+
+    }
+</body>
+
+
+
+</html>
+
+<script type="text/javascript">
+
+    $(document).ready(function()
+    {
+        $(".text").kendoMaskedTextBox();
+        $(".select").kendoComboBox(
+        {
+            filter: "contains",
+            suggest:true,
+        })
+        $(".date").kendoDatePicker({
+
+            format: "yyyy/mm/dd", animation: {
+                close: {
+                    effects: "fadeOut zoom:out",
+                    duration: 300
+                },
+                open: {
+                    effects: "fadeIn zoom:in",
+                    duration: 300
+                }
+            }
+        });
+
+        $(".btm").kendoButton();
+
+    })
+    function goback()
+    {
+        history.back();
+    }
+
+
+</script>
