@@ -5,10 +5,6 @@
 
 <h2>修改員工資料</h2>
 
-@{
-    ViewBag.Title = "Index";
-}
-
 <html>
 
 <head>
@@ -40,8 +36,8 @@
 
             <tr>
                 <td>員工姓</td>
-                <td colspan="3" class="select">
-                    <select name="EmpName">
+                <td colspan="3" >
+                    <select name="EmpName" class="select">
                         <option>@ViewBag.EmpID.FirstName</option>
                         @foreach (var item in (List<Final.Models.Employees>)ViewBag.EmpName)
                         {
@@ -52,8 +48,8 @@
             </tr>
             <tr>
                 <td>員工名</td>
-                <td colspan="3" class="select">
-                    <select name="EmpLastName">
+                <td colspan="3" >
+                    <select name="EmpLastName" class="select">
                         <option>@ViewBag.EmpID.LastName</option>
                         @foreach (var item in (List<Final.Models.Employees>)ViewBag.EmpLastName)
                         {
@@ -117,11 +113,11 @@
         $(".select").kendoComboBox(
         {
             filter: "contains",
-            suggest:true,
-        })
+            suggest: true,
+        });
         $(".date").kendoDatePicker({
 
-            format: "yyyy/mm/dd", animation: {
+            format: "yyyy/MM/dd", animation: {
                 close: {
                     effects: "fadeOut zoom:out",
                     duration: 300
@@ -133,7 +129,7 @@
             }
         });
 
-        $(".btm").kendoButton();
+        $(".btn").kendoButton();
 
     })
     function goback()

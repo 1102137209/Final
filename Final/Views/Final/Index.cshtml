@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Index";
+
 }
 
 <html>
@@ -55,18 +56,16 @@
 </html>
 
 <script type="text/javascript">
-
-    $(document).ready(function()
-    {
+    $(document).ready(function () {
         $(".text").kendoMaskedTextBox();
-        $(".select").kendoComboBox(
-        {
-            filter: "contains",
-            suggest:true,
-        })
-        $(".date").kendoDatePicker({
 
-            format: "yyyy/mm/dd", animation: {
+        $(".select").kendoComboBox({
+
+            filter: "contains",
+            suggest: true,
+        });
+        $(".date").kendoDatePicker({
+            format: "yyyy/MM/dd", animation: {
                 close: {
                     effects: "fadeOut zoom:out",
                     duration: 300
@@ -76,11 +75,12 @@
                     duration: 300
                 }
             }
+
+
         });
-
-        $(".btm").kendoButton();
-
+        $(".btn").kendoButton();
     })
+
     function goback()
     {
         history.back();

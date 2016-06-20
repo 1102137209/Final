@@ -5,9 +5,6 @@
 
 <h2>新增員工資料</h2>
 
-@{
-    ViewBag.Title = "Index";
-}
 
 <html>
 
@@ -66,7 +63,7 @@
 
         <tr>
             <td>員工生日日期</td>
-            <td><input type="date" name="EmpDate" class="date"/></td>
+            <td><input type="date" name="EmpDate" /></td>
             <td>聘請日期</td>
             <td><input type="date" name="AppliDate" class="date" /></td>
         </tr>
@@ -118,11 +115,11 @@
         $(".select").kendoComboBox(
         {
             filter: "contains",
-            suggest:true,
-        })
+            suggest: true,
+        });
         $(".date").kendoDatePicker({
 
-            format: "yyyy/mm/dd", animation: {
+            format: "yyyy/MM/dd", animation: {
                 close: {
                     effects: "fadeOut zoom:out",
                     duration: 300
@@ -134,7 +131,7 @@
             }
         });
 
-        $(".btm").kendoButton();
+        $(".btn").kendoButton();
 
     })
     function goback()
